@@ -23,7 +23,7 @@ Application with Spring Boot, Spring JDBC, Hibernate, Mysql
 > docker exec -i mysql_container sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD"' < /path/on/your/host/all-databases.sql
 
 #### connect to mysql
-> mysql -h host -u user -p menagerie
+> mysql -h host -u user -p password
 
 > show databases;
 
