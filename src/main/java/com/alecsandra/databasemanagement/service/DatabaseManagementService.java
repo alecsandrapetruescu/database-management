@@ -52,7 +52,7 @@ public class DatabaseManagementService {
 
     public void getCatalogs() {
         logger.info("Get catalogs:");
-        try (ResultSet resultSet = databaseMetaData.getCatalogs();) {
+        try (ResultSet resultSet = databaseMetaData.getCatalogs()) {
             while (resultSet.next()) {
                 logger.info("Catalog: {}", resultSet.getString(DatabaseDescription.CATALOG.getValue()));
             }
