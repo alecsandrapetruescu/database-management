@@ -2,6 +2,8 @@ package com.alecsandra.databasemanagement;
 
 import com.alecsandra.databasemanagement.model.Column;
 import com.alecsandra.databasemanagement.service.DatabaseManagementService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -13,6 +15,8 @@ import java.util.Map;
 
 @SpringBootApplication
 public class Application implements ApplicationRunner {
+
+    private static Logger logger = LoggerFactory.getLogger(DatabaseManagementService.class);
 
     @Autowired
     DatabaseManagementService service;
@@ -32,10 +36,12 @@ public class Application implements ApplicationRunner {
 
         service.getCatalogs();
         service.getTables();
-        Map<String, Column> map = service.getColumns("user_management", "user");
+        String catalog = "user_management";
+        String table = "user";
+        Map<String, Column> map = service.getColumns(catalog, table);
         String column = "id";
         if (service.hasColumn(map, column)) {
-            System.out.println(true);
+            logger.info("Table {} has column {}", table,  column);
         }
 
 
