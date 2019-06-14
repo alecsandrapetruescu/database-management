@@ -43,7 +43,7 @@ public class DatabaseManagementService {
         logger.info("Get TableTypes:");
         try (ResultSet resultSet = databaseMetaData.getTableTypes()) {
             while (resultSet.next()) {
-                System.out.println(resultSet.getString(DatabaseDescription.TABLE_TYPE.getValue()));
+                logger.info(resultSet.getString(DatabaseDescription.TABLE_TYPE.getValue()));
             }
         } catch (SQLException e) {
             logger.error(e.getMessage(), e);
@@ -54,7 +54,7 @@ public class DatabaseManagementService {
         logger.info("Get catalogs:");
         try (ResultSet resultSet = databaseMetaData.getCatalogs();) {
             while (resultSet.next()) {
-                System.out.println("Catalog: " + resultSet.getString(DatabaseDescription.CATALOG.getValue()));
+                logger.info("Catalog: {}", resultSet.getString(DatabaseDescription.CATALOG.getValue()));
             }
         } catch (SQLException e) {
             logger.error(e.getMessage(), e);
@@ -67,7 +67,7 @@ public class DatabaseManagementService {
 
             while (resultSet.next()) {
 
-                System.out.println(resultSet.getString(TableDescription.TABLE_NAME.getValue()));
+                logger.info(resultSet.getString(TableDescription.TABLE_NAME.getValue()));
 
             }
         } catch (SQLException e) {
@@ -90,7 +90,7 @@ public class DatabaseManagementService {
                         .withIsNullable(results.getString(ColumnDetails.IS_NULLABLE.getValue()))
                         .withIsAutoIncrement(results.getString(ColumnDetails.IS_AUTOINCREMENT.getValue()))
                         .build();
-                System.out.println(column.toString());
+                logger.info(column.toString());
                 columns.putIfAbsent(column.getName(), column);
             }
         } catch (SQLException e) {
