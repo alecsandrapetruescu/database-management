@@ -1,7 +1,5 @@
 package com.alecsandra.databasemanagement.model;
 
-import java.sql.Types;
-
 public class Column {
     private String name;
     private String type;
