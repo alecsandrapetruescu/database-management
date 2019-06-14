@@ -16,7 +16,7 @@ import java.util.Map;
 @SpringBootApplication
 public class Application implements ApplicationRunner {
 
-    private static Logger logger = LoggerFactory.getLogger(DatabaseManagementService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseManagementService.class);
 
     @Autowired
     DatabaseManagementService service;
@@ -41,7 +41,7 @@ public class Application implements ApplicationRunner {
         Map<String, Column> map = service.getColumns(catalog, table);
         String column = "id";
         if (service.hasColumn(map, column)) {
-            logger.info("Table {} has column {}", table,  column);
+            LOGGER.info("Table {} has column {}", table,  column);
         }
 
 
