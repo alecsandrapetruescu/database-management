@@ -76,7 +76,7 @@ public class DatabaseManagementService {
     }
 
     public Map<String, Column> getColumns(String catalog, String table) {
-        logger.info(String.format("Get columns for catalog: %s, table: %s", catalog, table));
+        logger.info("Get columns for catalog: {}, table: {}", catalog, table);
 
         Map<String, Column> columns = new HashMap<>();
         Column column;
