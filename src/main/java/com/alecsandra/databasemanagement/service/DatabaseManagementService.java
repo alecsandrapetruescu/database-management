@@ -18,7 +18,7 @@ import java.util.Map;
 @Service
 public class DatabaseManagementService {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(DatabaseManagementService.class);
+    private static Logger logger = LoggerFactory.getLogger(DatabaseManagementService.class);
 
     @Autowired
     private DataSource dataSource;
@@ -34,35 +34,35 @@ public class DatabaseManagementService {
         try (Connection connection = dataSource.getConnection()) {
             this.databaseMetaData = connection.getMetaData();
         } catch (SQLException e) {
-            LOGGER.error(e.getMessage(), e);
+            logger.error(e.getMessage(), e);
         }
     }
 
 
     public void getTableTypes() {
-        LOGGER.info("Get TableTypes:");
+        logger.info("Get TableTypes:");
         try (ResultSet resultSet = databaseMetaData.getTableTypes()) {
             while (resultSet.next()) {
                 System.out.println(resultSet.getString(DatabaseDescription.TABLE_TYPE.getValue()));
             }
         } catch (SQLException e) {
-            LOGGER.error(e.getMessage(), e);
+            logger.error(e.getMessage(), e);
         }
     }
 
     public void getCatalogs() {
-        LOGGER.info("Get catalogs:");
+        logger.info("Get catalogs:");
         try (ResultSet resultSet = databaseMetaData.getCatalogs();) {
             while (resultSet.next()) {
                 System.out.println("Catalog: " + resultSet.getString(DatabaseDescription.CATALOG.getValue()));
             }
         } catch (SQLException e) {
-            LOGGER.error(e.getMessage(), e);
+            logger.error(e.getMessage(), e);
         }
     }
 
     public void getTables() {
-        LOGGER.info(String.format("Get tables of type: %s", TableTypes.TABLE.getValue()));
+        logger.info(String.format("Get tables of type: %s", TableTypes.TABLE.getValue()));
         try (ResultSet resultSet = databaseMetaData.getTables(null, null, null, new String[]{TableTypes.TABLE.getValue()})) {
 
             while (resultSet.next()) {
@@ -71,12 +71,12 @@ public class DatabaseManagementService {
 
             }
         } catch (SQLException e) {
-            LOGGER.error(e.getMessage(), e);
+            logger.error(e.getMessage(), e);
         }
     }
 
     public Map<String, Column> getColumns(String catalog, String table) {
-        LOGGER.info(String.format("Get columns for catalog: %s, table: %s", catalog, table));
+        logger.info(String.format("Get columns for catalog: %s, table: %s", catalog, table));
 
         Map<String, Column> columns = new HashMap<>();
         Column column;
@@ -94,7 +94,7 @@ public class DatabaseManagementService {
                 columns.putIfAbsent(column.getName(), column);
             }
         } catch (SQLException e) {
-            LOGGER.error(e.getMessage(), e);
+            logger.error(e.getMessage(), e);
         }
 
         return columns;
