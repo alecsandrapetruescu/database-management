@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 import java.util.Map;
 
 @SpringBootApplication
-public class DatabaseManagementApplication implements ApplicationRunner {
+public class Application implements ApplicationRunner {
 
     @Autowired
     DatabaseManagementService service;
@@ -21,7 +21,7 @@ public class DatabaseManagementApplication implements ApplicationRunner {
     DataSource dataSource;
 
     public static void main(String[] args) {
-        SpringApplication.run(DatabaseManagementApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 
     @Override
