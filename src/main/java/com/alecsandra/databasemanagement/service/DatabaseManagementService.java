@@ -38,7 +38,6 @@ public class DatabaseManagementService {
         }
     }
 
-
     public void getTableTypes() {
         LOGGER.info("Get TableTypes:");
         try (ResultSet resultSet = databaseMetaData.getTableTypes()) {
@@ -62,7 +61,7 @@ public class DatabaseManagementService {
     }
 
     public void getTables() {
-        LOGGER.info(String.format("Get tables of type: %s", TableTypes.TABLE.getValue()));
+        LOGGER.info("Get tables of type: {}", TableTypes.TABLE.getValue());
         try (ResultSet resultSet = databaseMetaData.getTables(null, null, null, new String[]{TableTypes.TABLE.getValue()})) {
 
             while (resultSet.next()) {
