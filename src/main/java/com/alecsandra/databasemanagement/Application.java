@@ -1,7 +1,7 @@
 package com.alecsandra.databasemanagement;
 
 import com.alecsandra.databasemanagement.model.Column;
-import com.alecsandra.databasemanagement.service.DatabaseManagementService;
+import com.alecsandra.databasemanagement.service.DatabaseMetaDataService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +15,10 @@ import java.util.Map;
 @SpringBootApplication
 public class Application implements ApplicationRunner {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseManagementService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
 
     @Autowired
-    DatabaseManagementService service;
+    DatabaseMetaDataService databaseMetaDataService;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -26,22 +26,21 @@ public class Application implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-
-        service.getTableTypes();
-
-
-        service.getCatalogs();
-        service.getTables();
-        String catalog = "user_management";
+        String catalog = "demo";
         String table = "user";
-        Map<String, Column> map = service.getColumns(catalog, table);
         String column = "id";
-        if (service.hasColumn(map, column)) {
-            LOGGER.info("Table {} has column {}", table,  column);
+
+
+        databaseMetaDataService.getTableTypes();
+
+
+        databaseMetaDataService.getCatalogs();
+        databaseMetaDataService.getTables();
+
+        Map<String, Column> map = databaseMetaDataService.getColumns(catalog, table);
+
+        if (databaseMetaDataService.hasColumn(map, column)) {
+            LOGGER.info("Table {} has column {}", table, column);
         }
-
-
     }
-
-
 }

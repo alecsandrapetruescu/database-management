@@ -16,16 +16,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class DatabaseManagementService {
+public class DatabaseMetaDataService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseManagementService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseMetaDataService.class);
 
     @Autowired
     private DataSource dataSource;
 
     private DatabaseMetaData databaseMetaData;
 
-    public DatabaseManagementService() {
+    public DatabaseMetaDataService() {
         //
     }
 
