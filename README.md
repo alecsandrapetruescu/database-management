@@ -1,6 +1,9 @@
 ## 
 Application with Spring Boot, Spring JDBC, Hibernate, Mysql running in a Docker container
 
+#### Prerequisites
+- [Docker](https://www.docker.com/). Build and push images [install guide](https://docs.docker.com/install/)
+
 ###### docker commands
 ```
 > cd deployment // folder for docker-compose.yml
